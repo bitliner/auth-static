@@ -5,6 +5,7 @@ var nodeStatic = require('node-static')
 module.exports = function(config) {
   var file = new nodeStatic.Server(config.root, config.options)
   var port = process.env.PORT || config.port
+  var hostname=process.env.HOSTNAME;
   var username = config.username
   var password = config.password
 
@@ -21,5 +22,5 @@ module.exports = function(config) {
         file.serve(req, res)
       }).resume()
     }
-  }).listen(port)
+  }).listen(port, hostname)
 }
